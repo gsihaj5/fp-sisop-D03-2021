@@ -1,10 +1,24 @@
 #include <stdio.h>
-#include <sys/socket.h>
 #include <stdlib.h>
-#include <netinet/in.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/wait.h>
+#include <netinet/in.h>
 #include <unistd.h>
 #define PORT 8080
+
+void exit_on_failed_fork(pid_t child_id) {
+    if (child_id < 0)
+        exit(EXIT_FAILURE);
+}
+
+void create_directory(char destination_dir[100]) {
+
+    //create dir
+    char *argv[] = {"mkdir", "-p", destination_dir, NULL};
+    execv("/bin/mkdir", argv);
+}
 
 int main(int argc, char const *argv[]) {
     /*SOCKET CONFIGURATION*/
@@ -68,9 +82,17 @@ int main(int argc, char const *argv[]) {
         printf("%s -> %ld \n", all_input[0], strlen(all_input[0]));
         printf("%s\n", all_input[1]);
 
+        int execute_child_id = fork();
+        exit_on_failed_fork(execute_child_id);
 
-        if(strcmp(all_input[0], "create_db") == 0){
+        char database_path[100] = "./databases";
 
+        if(execute_child_id == 0){
+            if(strcmp(all_input[0], "create_db") == 0){
+                strcat(database_path, "/");
+                strcat(database_path,all_input[1]);
+                create_directory(database_path);
+            }
         }
     }
     return 0;
