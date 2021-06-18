@@ -28,6 +28,8 @@ void sqlCmdCreate(int network_socket){
         strcpy(package, "create_db ");
         strcat(package, dbName);
 
+        /*create_db [nama_db]*/
+
 
         send(network_socket , package , strlen(package) , 0);
     }
@@ -60,23 +62,24 @@ int main(int argc, char const *argv[]) {
 
     /*SOCKET CONFIGURATION END*/
 
+    char command[20]={0};
     while(1){
-        char command[20]={0};
         command[0] = '\0';
         scanf(" %s", command);
 
         if(strcmp(command, "CREATE") == 0){
             sqlCmdCreate(network_socket);
             continue;
+        }else{
+            printf("============================================\n");
+            printf("command %s is not available\n", command);
+            printf("please try this following command: \n\n");
+            printf("CREATE DATABASE <database_name> to create database\n");
+
         }
 
-        send(network_socket , "failed" , strlen("failed") , 0);
-    }
 
-    /*send(network_socket , hello , strlen(hello) , 0 );*/
-    /*printf("Hello message sent\n");*/
-    /*valread = read( network_socket , buffer, 1024);*/
-    /*printf("%s\n",buffer );*/
+    }
 
     return 0;
 }
