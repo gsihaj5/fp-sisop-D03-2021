@@ -70,7 +70,7 @@ Command UPDATE, SELECT, dan DELETE bisa dikombinasikan dengan WHERE. WHERE hanya
 ![log format](https://github.com/widigdacahya/gif/blob/main/17_logging.PNG)
 
 :green_book: **Reliability**
--	Harus membuat suatu program terpisah untuk dump database ke command-command yang akan di print ke layar. Untuk memasukkan ke file, gunakan redirection. Program ini tentunya harus melalui proses autentikasi terlebih dahulu. Ini sampai database level saja, tidak perlu sampai tabel.         
+-	Harus membuat suatu program terpisah untuk dump database ke command-command yang akan di **print ke layar**. Untuk memasukkan ke file, gunakan redirection. Program ini tentunya harus melalui proses autentikasi terlebih dahulu. Ini sampai database level saja, tidak perlu sampai tabel.         
 ![reliability](https://github.com/widigdacahya/gif/blob/main/18_realibility.PNG)
 
 Contoh hasil isi file database1.backup:             
@@ -86,7 +86,7 @@ Contoh hasil isi file database1.backup:
 -	Jika ada command yang tidak sesuai penggunaannya. Maka akan mengeluarkan pesan error tanpa keluar dari program client.
 
 :green_book: **Extra**
--	Program client dan dump berkomunikasi dengan socket ke program utama dan tidak boleh langsung mengakses file-file di folder program utama.
+-	Program client dan dump berkomunikasi **dengan socket** ke program utama dan **tidak boleh** langsung mengakses file-file di folder program utama.
 -	Requirement disini adalah requirement minimum, jika Anda mengerjakan melebihi requirement disini, maka akan mendapat nilai tambah.
 -	Terapkan apa saja yang sudah kalian pelajari di praktikum sistem operasi ini untuk mengerjakan final project.
 
